@@ -1,0 +1,19 @@
+doctype html
+html
+    block head
+    head
+    meta(charset='UTF-8')
+    title= 'BLOG'
+    link(rel='styleSheet',href='../stylesheets/style.css')
+    body
+        block top
+        h1=title
+        nav
+            span
+            a(title='主页',href='/')='home'
+            span
+            a(title='登录',href='/login')='login'
+            span
+            a(title='注册',href='/reg')='register'
+        block content
+

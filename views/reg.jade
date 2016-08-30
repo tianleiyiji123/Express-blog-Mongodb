@@ -1,5 +1,18 @@
-extends layout
+extends header
 
 block content
-   h1= title
-   p this is #{title} module
+   artical
+   form(method='post')
+      div
+         span='用户名:'
+         input(type='text')
+      div
+         span='密码'
+         input(type='text')
+      div
+         span='确认密码'
+         input(type='text')
+      div
+         span='邮箱'
+         input(type='text')
+      button(type='submit')='注册'
