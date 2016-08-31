@@ -6,10 +6,11 @@
     "start": "node app.js"
   },
   "dependencies": {
+    "connect-flash": "*",
+    "connect-mongo": "^0.8.2",
+    "crypto": "0.0.3",
     "express": "3.21.2",
     "jade": "*",
-    "mongodb":"*",
-    "connect-mongo":"*",
-    "connect-flash":"*"
+    "mongodb": "^2.2.8"
   }
 }

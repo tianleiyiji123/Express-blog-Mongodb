@@ -22,7 +22,6 @@ User.prototype.save = function(callback){//存储用户信息
 
     mongodb.open(function(err,db) {
         if (err) {
-            mongodb.close();
             return callback(err);
         }
         //读取 users 集合
@@ -34,7 +33,10 @@ User.prototype.save = function(callback){//存储用户信息
             //将用户数据插入users集合
             collection.insert(user, {safe: true}, function (err, user) {
                 mongodb.close();
-                callback(err, user);//成功返回插入的用户信息
+                if(err){
+                    return callback(err);//错误，返回err信息
+                }
+                callback(null, user[0]);//成功返回插入的用户信息
             })
         })
     })
@@ -53,13 +55,15 @@ User.get = function(name,callback){//读取用户信息
         //    查找用户名name值为name文档
             collection.findOne({
                 name : name
-            },function(err,doc){
+            },function(err,user){
                 mongodb.close();
-                if(doc){
-                    var user = new User(doc);
-                    callback(err,user);         //成功，返回查询的用户信息
+                if(err){
+                    return callback(err);//失败！返回err信息
+                    //var user = new User(doc);
+                    //callback(err,user);         //成功，返回查询的用户信息
                 }else{
-                    callback(err,null);         //失败，返回null
+
+                    callback(null,user);         //成功，返回查询的用户信息
                 }
             })
         })

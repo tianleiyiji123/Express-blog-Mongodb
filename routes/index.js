@@ -10,7 +10,6 @@ var crypto = require('crypto'),
     User = require('../models/user.js');
 module.exports = function(app){
   app.get('/',function(req,res){
-    console.log(res)
     res.render('index',{title:'WangLei'});
   });
 
@@ -39,19 +38,16 @@ module.exports = function(app){
   //  检查用户名是否存在
     User.get(newUser.name,function(err,user){
       if(user){
-        err = "用户名存在!";
-      }
-      if(err){
-        req.flash('error',err);
-        return res.redirect('/reg');
+        req.flash('error','用户名存在!');
+        return res.redirect('/reg');   //返回注册页
       }
     //  如果不存在就新增用户
-      newUser.save(function(err){
+      newUser.save(function(err,user){
           if(err){
             req.flash('error',err);
             return res.redirect('/reg');
           }
-        req.session.user = newUser;//用户信息存入session
+        req.session.user = user;//用户信息存入session
         req.flash('success','注册成功!');
         res.redirect('/')
       })

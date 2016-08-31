@@ -16,14 +16,14 @@ var flash = require('connect-flash');
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3002);                //ÉèÖÃÕ¾µã
-app.set('views', path.join(__dirname, 'views'));          //ÉèÖÃÊÓÍ¼²ãÎÄ¼şÄ¿Â¼
-app.set('view engine', 'jade');                           //ÉèÖÃÄ£°åÒıÇæ
-app.use(flash());                                         //Ê¹ÓÃflashÄ£°å
-app.use(express.favicon());                               //ÉèÖÃfavicon
-app.use(express.logger('dev'));                           //¿ª·¢Ä£Ê½ÏÂlogÈÕÖ¾
-app.use(express.json());                                  //ÇëÇóÌå
-app.use(express.urlencoded());                            //url±àÂë
+app.set('port', process.env.PORT || 3002);                //ï¿½ï¿½ï¿½ï¿½Õ¾ï¿½ï¿½
+app.set('views', path.join(__dirname, 'views'));          //
+app.set('view engine', 'jade');                           //ä½¿ç”¨jadeæ¨¡æ¿å¼•æ“
+app.use(flash());                                         //ä½¿ç”¨flash
+app.use(express.favicon());                               //è®¾ç½®favicon
+app.use(express.logger('dev'));                           //ä½¿ç”¨logæ‰“å°
+app.use(express.json());                                  //è®¾ç½®è¯·æ±‚å¤´
+app.use(express.urlencoded());                            //urlç¼–ç 
 app.use(express.methodOverride());
 
 app.use(express.cookieParser());
@@ -33,13 +33,17 @@ app.use(express.session({
   cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
   store: new MongoStore({
     db: settings.db
+    //host: settings.host,
+    //port: settings.port,
+    //url: 'mongodb://localhost'+settings.db,
+    //autoRemove:'native'
   })
 }));
 
-app.use(app.router);                                      //µ÷ÓÃÂ·ÓÉ½âÎö¹æÔò
-app.use(express.static(path.join(__dirname, 'public')));  //ÉèÖÃpublicÎª´æ·Å¾²Ì¬ÎÄ¼şÄ¿Â¼£¬Õ¾µã¿ÉÒÔ·ÃÎÊ
+app.use(app.router);                                      //ä½¿ç”¨è·¯ç”±
+app.use(express.static(path.join(__dirname, 'public')));  //è®¾ç½®é™æ€æ–‡ä»¶
 
-// development only     Êä³ö´íÎóĞÅÏ¢
+// development only     å¼€å‘æ¨¡å¼
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
