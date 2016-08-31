@@ -6,6 +6,22 @@
 *.exe
 *.o
 *.so
+#前端方面不提交
+# DOMJS 注释掉
+js/DOMJS
+bower_components
+bower_components/*
+.idea/
+dist/*
+*.class
+node_modules/*
+
+# Package Files #
+*.jar
+*.war
+*.ear
+node_modules
+
 
 # Packages #
 ############
@@ -65,19 +81,5 @@ atlassian-ide-plugin.xml
 # NetBeans specific files/directories
 .nbattrs
 
-# DOMJS 注释掉
-js/DOMJS
-bower_components
-bower_components/*
-.idea/
-dist/*
-*.class
-node_modules/*
 
-# Package Files #
-*.jar
-*.war
-*.ear
-node_modules
-# test#
-test
+
